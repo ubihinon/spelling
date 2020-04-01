@@ -4,7 +4,7 @@
 #
 # See our Developer Handbook for more information:
 # http://docs.divio.com/en/latest/reference/docker-docker-compose.html
-version: "2"
+version: "2.3"
 
 services:
   # The web container is an instance of exactly the same Docker image as your
@@ -38,3 +38,6 @@ services:
       POSTGRES_HOST_AUTH_METHOD: "trust"
     volumes:
       - ".:/app:rw"
+    ports:
+      # host:container
+      - "54311:5432"

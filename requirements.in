@@ -3,3 +3,5 @@ https://control.divio.com/api/v1/apps/serve/aldryn-addons/1.1.0/7a2d5a44-16e2-4e
 https://control.divio.com/api/v1/apps/serve/aldryn-django/2.2.11.2/f9763028-b602-45f4-b701-f8668dc79e74/aldryn-django-2.2.11.2.tar.gz#egg=aldryn-django==2.2.11.2
 https://control.divio.com/api/v1/apps/serve/aldryn-sso/1.7.0/3ef75ae5-729a-4c44-ac3e-fa5950511e90/aldryn-sso-1.7.0.tar.gz#egg=aldryn-sso==1.7.0
 # </INSTALLED_ADDONS>
+
+django-split-settings==0.3.0
