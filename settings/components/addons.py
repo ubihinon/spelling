@@ -25,3 +25,12 @@ INSTALLED_ADDONS = [
 import aldryn_addons.settings
 
 aldryn_addons.settings.load(locals())
+
+INSTALLED_APPS.extend([
+    'split_settings',
+    'graphene_django',
+    'rest_framework',
+
+    'apps.accounts',
+    'apps.cards',
+])

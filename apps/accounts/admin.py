@@ -21,4 +21,4 @@ class AccountUserAdmin(UserAdmin):
     )
     readonly_fields = ('last_login', 'date_joined',)
     search_fields = ('email',)
-    ordering = ('email',)
+    ordering = ('-date_joined',)
