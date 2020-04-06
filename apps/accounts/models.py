@@ -1,7 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.password_validation import get_default_password_validators
 from django.db import models
-from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.utils.translation import ugettext_lazy as _

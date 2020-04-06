@@ -3,21 +3,15 @@ from django import http
 from django.contrib.auth import get_user_model
 from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_decode
-from graphene_django import DjangoObjectType
 from graphene_django.rest_framework.mutation import SerializerMutation
 
+from apps.accounts.graphql import UserType
 from apps.accounts.serializers import UserCreateSerializer
 from apps.accounts.serializers import UserUpdateSerializer
 from apps.accounts.services import account_activation_token
 from apps.accounts.services import send_reset_password_email
 
 User = get_user_model()
-
-
-class UserType(DjangoObjectType):
-    class Meta:
-        model = User
-        fields = ('id', 'email', 'first_name', 'last_name')
 
 
 class UserMutation(SerializerMutation):
@@ -33,8 +27,10 @@ class UserUpdateMutation(SerializerMutation):
         # model_operations = ('create', 'update',)
         # exclude_fields = ('password',)
         # lookup_field = 'id'
+
     class Type:
         object_type = UserType
+
     # @classmethod
     # def mutate(cls, root, info, **kwargs):
     #     return UserUpdateMutation(kwargs.get('id'))
@@ -51,6 +47,7 @@ class UserUpdateMutation(SerializerMutation):
             else:
                 raise http.Http404
         return {'data': input, 'partial': True}
+
 
 # class UserUpdateMutation(SerializerMutation):
 #     class Meta:
@@ -158,28 +155,10 @@ class ResetUserPasswordMutation(graphene.Mutation):
         return ResetUserPasswordMutation(ok=True)
 
 
-class Query(graphene.ObjectType):
-    users = graphene.List(UserType)
-    user = graphene.Field(UserType, id=graphene.Int(), email=graphene.String())
+class AccountMutations:
     create_user = UserMutation.Field()
     update_user = UserUpdateMutation.Field()
     delete_user = DeleteUserMutation.Field()
     change_password = ChangeUserPasswordMutation.Field()
     reset_password = ResetUserPasswordMutation.Field()
     activate_user = ActivateUserMutation.Field()
-
-    def resolve_users(self, info, email):
-        return User.objects.filter(email=email)
-
-    def resolve_user(self, info, **kwargs):
-        pk = kwargs.get('id')
-        email = kwargs.get('email')
-
-        if pk is not None:
-            return User.objects.get(pk=pk)
-
-        if email is not None:
-            return User.objects.get(email=email)
-
-
-schema = graphene.Schema(query=Query)

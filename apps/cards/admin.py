@@ -4,5 +4,5 @@ from apps.cards.models import Card
 
 
 @admin.register(Card)
-class Card(admin.ModelAdmin):
+class CardAdmin(admin.ModelAdmin):
     pass
