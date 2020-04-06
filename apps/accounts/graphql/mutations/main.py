@@ -1,11 +1,10 @@
 import graphene
-from django import http
+import graphql_jwt
 from django.contrib.auth import get_user_model
 from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_decode
 from graphene_django.rest_framework.mutation import SerializerMutation
 
-from apps.accounts.graphql import UserType
 from apps.accounts.serializers import UserCreateSerializer
 from apps.accounts.serializers import UserUpdateSerializer
 from apps.accounts.services import account_activation_token
@@ -17,61 +16,16 @@ User = get_user_model()
 class UserMutation(SerializerMutation):
     class Meta:
         serializer_class = UserCreateSerializer
-        model_operations = ('create', 'update')
+        model_operations = ('create',)
         lookup_field = 'id'
 
 
-class UserUpdateMutation(SerializerMutation):
+class UpdateUserMutation(SerializerMutation):
     class Meta:
         serializer_class = UserUpdateSerializer
-        # model_operations = ('create', 'update',)
-        # exclude_fields = ('password',)
-        # lookup_field = 'id'
-
-    class Type:
-        object_type = UserType
-
-    # @classmethod
-    # def mutate(cls, root, info, **kwargs):
-    #     return UserUpdateMutation(kwargs.get('id'))
-
-    # class Arguments:
-    #     pk = graphene.ID()
-
-    @classmethod
-    def get_serializer_kwargs(cls, root, info, **input):
-        if 'email' in input:
-            instance = User.objects.filter(email=input['email']).first()
-            if instance:
-                return {'instance': instance, 'data': input, 'partial': True}
-            else:
-                raise http.Http404
-        return {'data': input, 'partial': True}
-
-
-# class UserUpdateMutation(SerializerMutation):
-#     class Meta:
-#         serializer_class = UserUpdateSerializer
-#         model_operations = ('create', 'update',)
-#         exclude_fields = ('password',)
-#         lookup_field = 'id'
-#
-#     # @classmethod
-#     # def mutate(cls, root, info, **kwargs):
-#     #     return UserUpdateMutation(kwargs.get('id'))
-#
-#     # class Arguments:
-#     #     pk = graphene.ID()
-#
-#     @classmethod
-#     def get_serializer_kwargs(cls, root, info, **input):
-#         if 'email' in input:
-#             instance = User.objects.filter(email=input['email']).first()
-#             if instance:
-#                 return {'instance': instance, 'data': input, 'partial': True}
-#             else:
-#                 raise http.Http404
-#         return {'data': input, 'partial': True}
+        model = User
+        model_operations = ('update',)
+        lookup_field = 'pk'
 
 
 class DeleteUserMutation(graphene.Mutation):
@@ -157,8 +111,12 @@ class ResetUserPasswordMutation(graphene.Mutation):
 
 class AccountMutations:
     create_user = UserMutation.Field()
-    update_user = UserUpdateMutation.Field()
+    update_user = UpdateUserMutation.Field()
     delete_user = DeleteUserMutation.Field()
     change_password = ChangeUserPasswordMutation.Field()
     reset_password = ResetUserPasswordMutation.Field()
     activate_user = ActivateUserMutation.Field()
+
+    token_auth = graphql_jwt.ObtainJSONWebToken.Field()
+    verify_token = graphql_jwt.Verify.Field()
+    refresh_token = graphql_jwt.Refresh.Field()

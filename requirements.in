@@ -7,3 +7,4 @@ https://control.divio.com/api/v1/apps/serve/aldryn-sso/1.7.0/3ef75ae5-729a-4c44-
 django-split-settings==0.3.0
 graphene-django>=2.0
 djangorestframework
+django-graphql-jwt

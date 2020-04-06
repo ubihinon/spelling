@@ -24,15 +24,8 @@ class UserCreateSerializer(serializers.ModelSerializer):
 
 
 class UserUpdateSerializer(serializers.ModelSerializer):
+    pk = serializers.IntegerField()
+
     class Meta:
         model = User
-        fields = ('id', 'email',)
-        # fields = '__all__'
-        # exclude = ('password',)
-
-    def create(self, validated_data):
-        pass
-
-    def update(self, instance, validated_data):
-        if self.is_valid(raise_exception=True):
-            return instance
+        fields = ('pk', 'email', 'first_name', 'last_name')

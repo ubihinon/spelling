@@ -1,3 +1,6 @@
 GRAPHENE = {
-    'SCHEMA': 'gql.schema'
+    'SCHEMA': 'gql.schema',
+    'MIDDLEWARE': [
+        'graphql_jwt.middleware.JSONWebTokenMiddleware',
+    ],
 }
