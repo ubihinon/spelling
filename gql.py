@@ -2,12 +2,15 @@ import graphene
 
 from apps.accounts.graphql import AccountMutations
 from apps.accounts.graphql.queries import AccountQueries
+from apps.cards.graphql.mutations import LearningSessionMutations
 from apps.cards.graphql.queries import CardQueries
+from apps.cards.graphql.queries import LearningSessionQueries
 
 
 class Query(
     AccountQueries,
     CardQueries,
+    LearningSessionQueries,
     graphene.ObjectType
 ):
     pass
@@ -15,6 +18,7 @@ class Query(
 
 class Mutation(
     AccountMutations,
+    LearningSessionMutations,
     graphene.ObjectType
 ):
     pass
