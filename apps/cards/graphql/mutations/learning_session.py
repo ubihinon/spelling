@@ -1,7 +1,7 @@
 from graphene_django.rest_framework.mutation import SerializerMutation
 
+from apps.cards.graphql.serializers import LearningSessionSerializer
 from apps.cards.models import LearningSession
-from apps.cards.serializers import LearningSessionSerializer
 
 
 class LearningSessionMutation(SerializerMutation):
