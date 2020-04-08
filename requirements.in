@@ -9,3 +9,4 @@ graphene-django>=2.0
 djangorestframework
 django-graphql-jwt
 django-filter==2.1.0
+django-environ

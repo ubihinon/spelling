@@ -9,5 +9,5 @@ User = get_user_model()
 
 @receiver(post_save, sender=User)
 def send_email_confirmation(sender, instance: User, created, **kwargs) -> None:
-    if created:
+    if created and not instance.is_active:
         send_confirmation_email(instance)
