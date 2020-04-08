@@ -1,27 +1,26 @@
-from graphene import relay
-from graphene_django import DjangoObjectType
-
 from apps.cards.models import Answer
 from apps.cards.models import Card
 from apps.cards.models import LearningSession
+from apps.core.graphql.relay_nodes import DatasourceRelayNode
+from apps.core.graphql.types import BaseDjangoObjectType
 
 
-class CardType(DjangoObjectType):
+class CardType(BaseDjangoObjectType):
     class Meta:
         model = Card
-        interfaces = (relay.Node,)
+        interfaces = (DatasourceRelayNode,)
 
     def resolve_sound(self: Card, info) -> str:
         return info.context.build_absolute_uri(self.sound.url)
 
 
-class LearningSessionType(DjangoObjectType):
+class LearningSessionType(BaseDjangoObjectType):
     class Meta:
         model = LearningSession
-        interfaces = (relay.Node,)
+        interfaces = (DatasourceRelayNode,)
 
 
-class AnswerType(DjangoObjectType):
+class AnswerType(BaseDjangoObjectType):
     class Meta:
         model = Answer
-        interfaces = (relay.Node,)
+        interfaces = (DatasourceRelayNode,)

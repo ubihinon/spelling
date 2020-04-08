@@ -4,11 +4,12 @@ from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_decode
 
 from apps.accounts.services import account_activation_token
+from apps.core.graphql.mutations import BaseMutation
 
 User = get_user_model()
 
 
-class ActivateUserMutation(graphene.Mutation):
+class ActivateUserMutation(BaseMutation):
     ok = graphene.Boolean()
     details = graphene.String()
     error = graphene.String()

@@ -1,10 +1,9 @@
-from graphene_django.rest_framework.mutation import SerializerMutation
-
 from apps.cards.graphql.serializers import AnswerSerializer
 from apps.cards.models import Answer
+from apps.core.graphql.mutations import BaseSerializerMutation
 
 
-class AnswerMutation(SerializerMutation):
+class AnswerMutation(BaseSerializerMutation):
     class Meta:
         serializer_class = AnswerSerializer
         model = Answer

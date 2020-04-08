@@ -1,10 +1,9 @@
-from graphene_django.rest_framework.mutation import SerializerMutation
-
 from apps.cards.graphql.serializers import LearningSessionSerializer
 from apps.cards.models import LearningSession
+from apps.core.graphql.mutations import BaseSerializerMutation
 
 
-class LearningSessionMutation(SerializerMutation):
+class LearningSessionMutation(BaseSerializerMutation):
     class Meta:
         serializer_class = LearningSessionSerializer
         model = LearningSession

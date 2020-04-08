@@ -1,9 +1,8 @@
-from graphene_django.rest_framework.mutation import SerializerMutation
-
 from apps.accounts.graphql.serializers import UserCreateSerializer
+from apps.core.graphql.mutations import BaseSerializerMutation
 
 
-class UserMutation(SerializerMutation):
+class UserMutation(BaseSerializerMutation):
     class Meta:
         serializer_class = UserCreateSerializer
         model_operations = ('create',)

@@ -1,10 +1,12 @@
 import graphene
 from django.contrib.auth import get_user_model
 
+from apps.core.graphql.mutations import BaseMutation
+
 User = get_user_model()
 
 
-class DeleteUserMutation(graphene.Mutation):
+class DeleteUserMutation(BaseMutation):
     ok = graphene.Boolean()
 
     class Arguments:

@@ -1,12 +1,12 @@
 from django.contrib.auth import get_user_model
-from graphene_django.rest_framework.mutation import SerializerMutation
 
 from apps.accounts.graphql.serializers import UserUpdateSerializer
+from apps.core.graphql.mutations import BaseSerializerMutation
 
 User = get_user_model()
 
 
-class UpdateUserMutation(SerializerMutation):
+class UpdateUserMutation(BaseSerializerMutation):
     class Meta:
         serializer_class = UserUpdateSerializer
         model = User

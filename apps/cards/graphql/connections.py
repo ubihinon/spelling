@@ -9,11 +9,11 @@ class CardConnection(BaseConnection):
         node = CardType
 
 
-class AnswerConnection(BaseConnection):
-    class Meta:
-        node = AnswerType
-
-
 class LearningSessionConnection(BaseConnection):
     class Meta:
         node = LearningSessionType
+
+
+class AnswerConnection(BaseConnection):
+    class Meta:
+        node = AnswerType

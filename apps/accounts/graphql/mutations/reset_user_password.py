@@ -2,11 +2,12 @@ import graphene
 from django.contrib.auth import get_user_model
 
 from apps.accounts.services import send_reset_password_email
+from apps.core.graphql.mutations import BaseMutation
 
 User = get_user_model()
 
 
-class ResetUserPasswordMutation(graphene.Mutation):
+class ResetUserPasswordMutation(BaseMutation):
     ok = graphene.Boolean()
     error = graphene.String()
 

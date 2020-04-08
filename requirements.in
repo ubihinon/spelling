@@ -10,3 +10,4 @@ djangorestframework
 django-graphql-jwt
 django-filter==2.1.0
 django-environ
+graphene-permissions
