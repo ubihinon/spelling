@@ -1,3 +1,4 @@
+from graphene import relay
 from graphene_django import DjangoObjectType
 
 from apps.cards.models import Answer
@@ -13,9 +14,10 @@ class CardType(DjangoObjectType):
 class LearningSessionType(DjangoObjectType):
     class Meta:
         model = LearningSession
-        fields = '__all__'
+        interfaces = (relay.Node,)
 
 
 class AnswerType(DjangoObjectType):
     class Meta:
         model = Answer
+        interfaces = (relay.Node,)

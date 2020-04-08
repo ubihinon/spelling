@@ -6,7 +6,13 @@ def resolve_cards(parent, info):
     return Card.objects.all()
 
 
-def resolve_sessions(parent, info):
+def resolve_card(parent, info, **kwargs):
+    pk = kwargs.get('id')
+    if pk is not None:
+        return Card.objects.get(pk=pk)
+
+
+def resolve_sessions(parent, info, **kwargs):
     return LearningSession.objects.filter(user=info.context.user)
 
 

@@ -31,6 +31,7 @@ INSTALLED_APPS.extend([
     'graphene_django',
     'rest_framework',
 
+    'apps.core',
     'apps.accounts',
     'apps.cards',
 ])

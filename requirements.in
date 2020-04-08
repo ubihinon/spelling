@@ -8,3 +8,4 @@ django-split-settings==0.3.0
 graphene-django>=2.0
 djangorestframework
 django-graphql-jwt
+django-filter==2.1.0
