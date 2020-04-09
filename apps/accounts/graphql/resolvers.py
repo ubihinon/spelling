@@ -3,10 +3,6 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 
-def resolve_users(parent, info, **kwargs):
-    return User.objects.all()
-
-
 def resolve_user(parent, info, **kwargs):
     pk = kwargs.get('id')
     email = kwargs.get('email')

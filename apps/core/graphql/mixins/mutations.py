@@ -7,11 +7,11 @@ class BaseAuthMutation(AuthMutation):
     permission_classes = (AllowAuthenticated,)
 
     @classmethod
-    def mutate(cls, root, info, **kwargs):
-        cls.check_premissions(root, info, **kwargs)
-        return super().mutate(cls, root, info, **kwargs)
+    def mutate(cls, root, info, input):
+        cls.check_premissions(root, info, input)
+        return super().mutate(root, info, input)
 
     @classmethod
-    def check_premissions(cls, root, info, **kwargs):
-        if not cls.has_permission(root, info, **kwargs):
+    def check_premissions(cls, root, info, kwargs):
+        if not cls.has_permission(root, info, kwargs):
             raise PermissionDenied()

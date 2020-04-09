@@ -1,6 +1,6 @@
 import graphene
 
-from apps.accounts.graphql import AccountMutations
+from apps.accounts.graphql.mutations import AccountMutations
 from apps.accounts.graphql.queries import AccountQueries
 from apps.cards.graphql.mutations import LearningSessionMutations
 from apps.cards.graphql.queries import CardQueries

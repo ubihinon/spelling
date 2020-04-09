@@ -1,8 +1,9 @@
+from graphene import Connection
 from graphene import Int
-from graphene import relay
+# from graphene import relay
 
 
-class BaseConnection(relay.Connection):
+class BaseConnection(Connection):
     count = Int()
 
     def resolve_count(self, info):

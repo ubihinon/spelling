@@ -1,15 +1,14 @@
 import graphene
-from graphene import relay
 
-from apps.cards.graphql import CardType
-from apps.cards.graphql.connections import CardConnection
+from apps.cards.graphql.filters import CardFilterSet
 from apps.cards.graphql.resolvers import resolve_card
-from apps.cards.graphql.resolvers import resolve_cards
+from apps.cards.graphql.types import CardType
+from apps.core.graphql.connection_fields import DataSourceConnectionField
 from apps.core.graphql.relay_nodes import DatasourceRelayNode
 
 
 class CardQueries(graphene.ObjectType):
-    cards = relay.ConnectionField(CardConnection, resolver=resolve_cards)
+    cards = DataSourceConnectionField(CardType, filterset_class=CardFilterSet)
     card = DatasourceRelayNode.Field(
         CardType,
         id=graphene.Int(),
