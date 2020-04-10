@@ -7,7 +7,7 @@ from apps.cards.models import LearningSession
 
 @admin.register(Card)
 class CardAdmin(admin.ModelAdmin):
-    pass
+    search_fields = ('text',)
 
 
 @admin.register(Answer)
@@ -17,4 +17,4 @@ class AnswerAdmin(admin.ModelAdmin):
 
 @admin.register(LearningSession)
 class LearningSessionAdmin(admin.ModelAdmin):
-    pass
+    search_fields = ('user__email',)

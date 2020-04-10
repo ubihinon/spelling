@@ -5,6 +5,7 @@ from django.db import models
 class Card(models.Model):
     text = models.CharField(max_length=200)
     sound = models.FileField(
+        upload_to='sounds/',
         validators=[
             FileExtensionValidator(allowed_extensions=['mp3'])
         ]
