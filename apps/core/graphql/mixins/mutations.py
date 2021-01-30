@@ -1,6 +1,7 @@
 from graphene_permissions.mixins import AuthMutation
-from graphene_permissions.permissions import AllowAuthenticated
 from rest_framework.exceptions import PermissionDenied
+
+from apps.core.graphql.security.permissions.allow_authenticated import AllowAuthenticated
 
 
 class BaseAuthMutation(AuthMutation):

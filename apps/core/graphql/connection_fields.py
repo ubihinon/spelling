@@ -1,7 +1,7 @@
 from graphene import relay
-from graphene_permissions.permissions import AllowAuthenticated
 
 from apps.core.graphql.security.mixins.filter import AuthFilter
+from apps.core.graphql.security.permissions.allow_authenticated import AllowAuthenticated
 
 
 class DataSourceConnectionField(AuthFilter, relay.ConnectionField):

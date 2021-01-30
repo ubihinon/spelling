@@ -12,5 +12,6 @@ django-filter==2.1.0
 django-environ
 django-cors-headers
 graphene-permissions
+packaging
 
 openpyxl
